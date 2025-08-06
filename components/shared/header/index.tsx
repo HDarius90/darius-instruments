@@ -3,6 +3,7 @@ import { APP_NAME } from '@/lib/constants';
 import { ShoppingCart, UserIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import ModeToggle from './mode-toggle';
 
 const Header = () => {
   return (
@@ -13,8 +14,8 @@ const Header = () => {
             <Image
               src="/images/logo.svg"
               alt={`${APP_NAME} logo`}
-              height={48}
               width={48}
+              height={48}
               priority
             />
             <span className="hidden lg:block font-bold text-2xl ml-3">
@@ -23,13 +24,14 @@ const Header = () => {
           </Link>
         </div>
         <div className="space-x-2">
+          <ModeToggle />
           <Button asChild variant="ghost">
             <Link href="/cart">
               <ShoppingCart />
               Cart
             </Link>
           </Button>
-          <Button asChild variant="ghost">
+          <Button asChild>
             <Link href="/sign-in">
               <UserIcon />
               Sign in Cart
