@@ -13,9 +13,11 @@ A modern, full-stack ecommerce platform built from scratch using the latest web 
 
 ## 🧰 Tech Stack
 
+- **Language**: TypeScript
 - **Framework**: Next.js 15 (App Router)
 - **Styling**: Tailwind CSS, shadcn/ui
 - **Database**: PostgreSQL (via Prisma ORM)
+- **Forms & Validation**: Zod with React-Hook-Form
 - **Authentication**: Clerk / Auth.js
 - **Payments**: Stripe
 - **Deployment**: Vercel
