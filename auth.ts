@@ -4,7 +4,7 @@ import { prisma } from '@/db/prisma';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { compareSync } from 'bcrypt-ts-edge';
 
-export const config = {
+export const config: NextAuthConfig = {
   pages: {
     signIn: '/sign-in',
     error: '/sign-in',
@@ -64,6 +64,6 @@ export const config = {
       return session;
     },
   },
-} satisfies NextAuthConfig;
+};
 
 export const { handlers, auth, signIn, signOut } = NextAuth(config);
