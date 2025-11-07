@@ -3,15 +3,15 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { singInDefaultValues } from '@/lib/constants';
+import { singUpDefaultValues } from '@/lib/constants';
 import Link from 'next/link';
 import { useActionState } from 'react';
 import { useFormStatus } from 'react-dom';
-import { signInWithCredentials } from '@/lib/actions/user.actions';
+import { signUpUser } from '@/lib/actions/user.actions';
 import { useSearchParams } from 'next/navigation';
 
-const CredentialsSignInForm = () => {
-  const [data, action] = useActionState(signInWithCredentials, {
+const SignUpForm = () => {
+  const [data, action] = useActionState(signUpUser, {
     success: false,
     message: '',
   });
@@ -19,12 +19,12 @@ const CredentialsSignInForm = () => {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/';
 
-  const SignInButton = () => {
+  const SignUpButton = () => {
     const { pending } = useFormStatus();
 
     return (
       <Button disabled={pending} className='w-full' variant='default'>
-        {pending ? 'Signing in...' : 'Sign In'}
+        {pending ? 'Submitting...' : 'Sign Up'}
       </Button>
     );
   };
@@ -34,6 +34,17 @@ const CredentialsSignInForm = () => {
       <input type='hidden' name='callbackUrl' value={callbackUrl} />
       <div className='space-y-6'>
         <div>
+          <Label htmlFor='name'>Name</Label>
+          <Input
+            id='name'
+            name='name'
+            type='name'
+            required
+            autoComplete='name'
+            defaultValue={singUpDefaultValues.name}
+          />
+        </div>
+        <div>
           <Label htmlFor='email'>Email</Label>
           <Input
             id='email'
@@ -41,22 +52,33 @@ const CredentialsSignInForm = () => {
             type='email'
             required
             autoComplete='email'
-            defaultValue={singInDefaultValues.email}
+            defaultValue={singUpDefaultValues.email}
           />
-          <Label htmlFor='password'>Password</Label>
         </div>
         <div>
+          <Label htmlFor='password'>Password</Label>
           <Input
             id='password'
             name='password'
             type='password'
             required
             autoComplete='password'
-            defaultValue={singInDefaultValues.password}
+            defaultValue={singUpDefaultValues.password}
           />
         </div>
         <div>
-          <SignInButton />
+          <Label htmlFor='confirmPassword'>Confirm Password</Label>
+          <Input
+            id='confirmPassword'
+            name='confirmPassword'
+            type='password'
+            required
+            autoComplete='confirmPassword'
+            defaultValue={singUpDefaultValues.confirmPassword}
+          />
+        </div>
+        <div>
+          <SignUpButton />
         </div>
 
         {data && !data.success && (
@@ -64,9 +86,9 @@ const CredentialsSignInForm = () => {
         )}
 
         <div className='text-sm text-center text-muted-foreground'>
-          Don&apos;t have an account?{' '}
-          <Link href='/sign-up' target='_self' className='link'>
-            Sign Up
+          Already have an account?{' '}
+          <Link href='/sign-in' target='_self' className='link'>
+            Sign In
           </Link>
         </div>
       </div>
@@ -74,4 +96,4 @@ const CredentialsSignInForm = () => {
   );
 };
 
-export default CredentialsSignInForm;
+export default SignUpForm;
