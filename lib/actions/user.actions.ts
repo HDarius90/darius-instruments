@@ -1,4 +1,4 @@
-'user server';
+'use server';
 
 import { signInSchema } from '../validator';
 import { signIn, signOut } from '@/auth';

@@ -24,7 +24,7 @@ const Menu = () => {
         <Button asChild>
           <Link href='/sign-in'>
             <UserIcon />
-            Sign in Cart
+            Sign in
           </Link>
         </Button>
       </nav>
@@ -45,7 +45,7 @@ const Menu = () => {
             <Button asChild>
               <Link href='/sign-in'>
                 <UserIcon />
-                Sign in Cart
+                Sign in
               </Link>
             </Button>
             <SheetDescription></SheetDescription>
