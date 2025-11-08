@@ -187,7 +187,7 @@ export async function removeItemFromCart(productId: string) {
     // Update cart in database
     await prisma.cart.update({
       where: {
-        id: productId,
+        id: cart.id,
       },
       data: {
         items: cart.items as Prisma.CartUpdateitemsInput[],
